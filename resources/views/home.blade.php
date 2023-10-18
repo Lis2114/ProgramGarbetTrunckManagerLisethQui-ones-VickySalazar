@@ -9,7 +9,7 @@ if (isset($_SESSION['login'])) {
         echo'<form action="/trabajoFinal/services/logout.php"  align="right"><button class="regresar" >Cerrar Sección</button></form>';
         echo '' ;
     }
-}
+} 
 */
     ?>
     <h1>BIENVENIDO ADMINISTRADOR </h1>
