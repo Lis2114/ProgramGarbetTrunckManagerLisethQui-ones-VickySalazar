@@ -1,0 +1,68 @@
+body{ 
+    background: linear-gradient(to right, rgb(241, 237, 239), rgb(92, 165, 184));
+}
+
+.loginbody{
+    width: 500px;
+    background: linear-gradient(to right, rgb(241, 237, 239), rgb(92, 165, 184));
+}
+
+#myTable{
+
+    padding: 50px;
+    border: left 20px;
+    border-color: black;
+   
+}
+.body{
+   
+    font-family: 'Times New Roman', Times, serif;
+    min-height: 70vh; /* permite que sea dinámico, sin importar el tamaño*/
+    display:flex;
+    align-items: center;
+    justify-items: center;
+}
+.form {
+    margin:100px;
+    padding: 50px;
+    box-shadow: 0 0 20px rgba(0,  0, 0 ,20);
+    border-radius: 20px;
+    text-align:center;
+    width: auto;
+    background-color: rgb(241, 243, 242);
+}
+
+.input-group{
+
+    text-align: left;
+    padding-top: 10px;
+
+}
+
+.sep-button {  /**/
+    background: rgb(107, 107, 224);
+    color: rgb(0, 0, 0);
+    margin:  20px
+    
+}
+
+.regresar{
+
+    background-color: rgb(219, 194, 161);
+    width: 150px;
+    height: 30px;
+    text-align: center;
+    border-radius: 10px;
+    border-color: blueviolet;
+}
+
+button{
+    margin: 25px;
+
+}
+
+tbody{
+
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    
+}

@@ -1,4 +1,5 @@
-
+@extends('templateStatic')
+@section('content')
 <form action="/trabajoFinal"  method="post" align="right"><button  class="regresar" >Regresar</button></form>
 
 <form action="../services/auth.php" method="post" class="form">
@@ -28,7 +29,7 @@
 
 <div class= "container text-center">
 <?php
-  //session_start(); //  incluir iniciar sección en el index
+  /*//session_start(); //  incluir iniciar sección en el index
  if(isset($_SESSION['login'])){
   if($_SESSION['login'] ==true){
     include '../pages/home.php';
@@ -37,6 +38,7 @@
     include '../pages/login.php';
   }
  }
- else
+*/
  ?>
 </div>
+@endsection
