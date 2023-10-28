@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="{{ asset('admin/plugins/daterangepicker/daterangepicker.css') }}">
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('admin/plugins/summernote/summernote-bs4.min.cs') }}">
-    <link rel="stylesheet" href="{{ asset('css/styles.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     @yield('styles')
 </head>
 
@@ -61,7 +61,7 @@
                                     class="img-size-50 mr-3 img-circle">
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
-                                        {{ Auth::user()->name }}
+                                        {{ Auth::user()->name}}
                                     </h3>
                                     <p class="text-sm">{{ Auth::user()->email }}</p>
                                 </div>
@@ -91,8 +91,8 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="" class="brand-link brand_logo">
-                <img src="{{asset('img/gs-logo.png')}}" alt="Garbage Schedule" class="img-logo">Garbage Schedule
+            <a href="{{ route('welcome') }}" class="brand-link brand_logo">
+                <img src="{{ asset('img/gs-logo.png') }}" alt="Garbage Schedule" class="img-logo"> Garbage Schedule
             </a>
 
             <!-- Sidebar -->
@@ -103,7 +103,7 @@
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                         <li class="nav-item menu-open">
-                            <a href="r{{ route('employee.index') }}" class="nav-link active">
+                            <a href="{{ route('employee.index') }}" class="nav-link active">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>Empleados</p>
                             </a>
@@ -129,10 +129,11 @@
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             <h1 class="m-0">@yield('title')</h1>
-                        </div><!-- /.col -->
+                        </div>
+                        <!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="">Inicio</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('welcome') }}">Inicio</a></li>
                                 <li class="breadcrumb-item active">@yield('title')</li>
                             </ol>
                         </div><!-- /.col -->
@@ -142,47 +143,12 @@
             <!-- /.content-header -->
 
             <!-- Main content -->
-
-            <div class="container-fluid">
-                <div class="container  form">
-
-                    <div class="row">
-                        <div class="col-3 col-sm-5">
-                            <img src="https://cdn-icons-png.flaticon.com/256/3321/3321681.png" width="100">
-                            <a href={{ route('employee.index') }} class="btn btn-info">Empleado</a>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-3 col-sm-5">
-                            <img src="https://cdn-icons-png.flaticon.com/512/6643/6643416.png" width="100">
-                            <a href="" class="btn btn-info">Camiones</a>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-3 col-sm-5">
-                            <img src="https://cdn-icons-png.flaticon.com/512/340/340266.png" width="95">
-                            <a href="" class="btn btn-info"> Rutas</a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-3 col-sm-5">
-                            <img src="https://cdn-icons-png.flaticon.com/512/10252/10252718.png" width="95">
-                            <a href="" class="btn btn-info">Horarios</a>
-
-                        </div>
-                    </div>
+            <section class="content">
+                <div class="container-fluid">
+                    @yield('content')
                 </div>
-            </div>
-
+            </section>
         </div>
-    </div>
-    <!-- /.container-fluid -->
-    </div>
-    </div>
-    </div>
-    <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
@@ -197,9 +163,6 @@
     <aside class="control-sidebar control-sidebar-dark">
         <!-- Control sidebar content goes here -->
     </aside>
-    <!-- /.control-sidebar -->
-    </div>
-    <!-- ./wrapper -->
 
     <!-- jQuery -->
     <script src="{{ asset('admin/plugins/jquery/jquery.min.js') }}"></script>

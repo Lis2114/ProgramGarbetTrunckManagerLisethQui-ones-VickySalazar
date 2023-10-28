@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\employee\EmployeeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
@@ -29,3 +30,6 @@ route::post('/logout', [AuthenticationSessionController::class,'destroy'])->name
 
 route::get('/register', [RegisterUserController::class,'create'])->name('register');
 route::post('/register', [RegisterUserController::class,'store'])->name('save');
+
+//=====================Employee==================
+Route::resource('employee',EmployeeController::class);
