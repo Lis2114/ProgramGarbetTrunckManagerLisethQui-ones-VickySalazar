@@ -1,4 +1,4 @@
-@extends('employee.BaseEmployee')
+@extends('truck.Basetruck')
 
 @section('styles')
     <!-- DataTables -->
@@ -8,7 +8,7 @@
 @endsection
 
 @section('title')
-    Listado Empleados
+    Listado Camiones
 @endsection
 
 @section('content')
@@ -17,7 +17,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-end">
-                        <a href="{{ route('employee.create') }}" class="btn btn-warning">
+                        <a href="{{ route('truck.create') }}" class="btn btn-warning">
                             <i class="fas fa-plus-circle nav-icon"></i>
                         </a>
                     </div>
@@ -27,35 +27,31 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
-                                <th>Cedula</th>
-                                <th>Tipo</th>
-                                <th></th>
+                                <th>Placa</th>
+                                <th>Capacidad de recoleccion(kg)</th>
+
                             </tr>
                         </thead>
                         <tbody>
-                            @isset($employees)
-                                @foreach ($employees as $employee)
+                            @isset($trucks)
+                                @foreach ($trucks as $truck)
                                     <tr>
-                                        <td>{{ $employee->name }}</td>
-                                        <td>{{ $employee->lastName }}</td>
-                                        <td>{{ $employee->identification }}</td>
-                                        <td>{{ $employee->type }}</td>
+                                        <td>{{ $truck->numberRegistration }}</td>
+                                        <td>{{ $truck->capacity }}</td>
                                         <td class="text-center">
                                             <div class="d-flex justify-content-center">
-                                                <a href="{{ route('employee.edit', $employee) }}" class="btn btn-info">
-                                                    <i class="fas fa-edit nav-icon"></i>
-                                                </a>
-                                                &nbsp;&nbsp;
-                                                <form action="{{ route('employee.destroy', $employee) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger"
-                                                        onclick="return confirm('¿Está seguro de eliminar los datos del empleado?')"><i
-                                                            class="fas fa-minus-circle nav-icon"></i></button>
-                                                </form>
-                                            </div>
+                                            <a href="{{route('truck.edit', $truck) }}" class="btn btn-info">
+                                                <i class="fas fa-edit nav-icon"></i>
+                                            </a>
+                                            &nbsp;&nbsp;
+                                            <form action="{{ route('truck.destroy', $truck)}}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"class="btn btn-danger"
+                                                onclick="return confirm('¿Está seguro de eliminar los datos del empleado?')"><i
+                                                        class="fas fa-minus-circle nav-icon"></i></button>
+                                            </form>
+                                        </div>
                                         </td>
                                     </tr>
                                 @endforeach

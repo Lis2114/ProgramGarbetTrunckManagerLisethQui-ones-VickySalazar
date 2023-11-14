@@ -1,10 +1,13 @@
 <?php
 
-use App\Http\Controllers\employee\EmployeeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\truck\TruckController;
+use App\Http\Controllers\address\RouteController;
 use App\Http\Controllers\Auth\RegisterUserController;
+use App\Http\Controllers\employee\EmployeeController;
+use App\Http\Controllers\schedule\ScheduleController;
 use App\Http\Controllers\auth\AuthenticationSessionController;
 
 /*
@@ -33,3 +36,9 @@ route::post('/register', [RegisterUserController::class,'store'])->name('save');
 
 //=====================Employee==================
 Route::resource('employee',EmployeeController::class);
+//=====================Camion==========================
+Route::resource('truck',TruckController::class);
+//=====================Rutas==========================
+Route::resource('route',RouteController::class);
+//=====================Rutas==========================
+Route::resource('schedule',ScheduleController::class);

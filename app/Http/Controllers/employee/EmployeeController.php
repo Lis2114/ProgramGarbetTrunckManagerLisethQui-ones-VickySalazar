@@ -9,37 +9,68 @@ use App\Http\Controllers\Controller;
 
 class employeeController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $employees = Employee::get();
-        return view('employee.indexEmployee',['employees'=> $employees]);
+        return view('employee.indexEmployee', ['employees' => $employees]);
     }
 
-    public function create(){
+    public function create()
+    {
         $types = Employee::get();
-        return view('employee.EmployeeCreate',['types'=> $types,'employee'=>null]);
+        return view('employee.EmployeeCreate', ['types' => $types, 'employee' => null]);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
+
+        $request->validate([
+            'name' => 'required|regex:/^([A-Za-zÑñ\s]*)$/|between:3,50',
+            'lastName' => 'required|regex:/^([A-Za-zÑñ\s]*)$/|between:3,50',
+            'identification' => 'required|integer|between:1000000,1500000000',
+            'type' => 'required|in:Recolector,Barrendero,Conductor'
+        ]);
 
         Employee::create([
-            'name'=> $request->name,
-            'last_name'=> $request->lastname,
-            'identification'=> $request->identification,
+            'name' => $request->name,
+            'lastName' => $request->lastName,
+            'identification' => $request->identification,
             'type' => $request->type,
+
         ]);
         return redirect()->route('employee.index');
     }
-    public function show($id){
-
+    public function show(Employee $employee)
+    {
     }
 
-    public function edit($id){
-
+    public function edit(Employee $employee)
+    {
+        return view('employee.EmployeeUpdate', ['employee' => $employee]);
     }
-    public function update(Request $request, $id){
 
+    public function update(Request $request, Employee $employee)
+    {
+        //dd($employee);
+        $request->validate([
+            'name' => 'required|regex:/^([A-Za-záéíóúÁÉÍÓÚÑñ\s]*)$/|between:3,50',
+            'lastName' => 'required|regex:/^([A-Za-záéíóúÁÉÍÓÚÑñ\s]*)$/|between:3,50',
+            'identification' => 'required|integer|between:1000000,1500000000',
+            'type' => 'required|in:Recolector,Barrendero,Conductor'
+        ]);
+
+        $employee->update([
+            'name' => $request->name,
+            'lastName' => $request->lastName,
+            'identification' => $request->identification,
+            'type' => $request->type
+        ]);
+        return redirect()->route('employee.index');
     }
-    public function destroy($id){
 
+    public function destroy(Employee $employee)
+    {
+        $employee->delete();
+        return redirect()->route('employee.index');
     }
 }
