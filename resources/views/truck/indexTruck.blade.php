@@ -1,4 +1,4 @@
-@extends('truck.Basetruck')
+@extends('admin.Template')
 
 @section('styles')
     <!-- DataTables -->
@@ -40,18 +40,18 @@
                                         <td>{{ $truck->capacity }}</td>
                                         <td class="text-center">
                                             <div class="d-flex justify-content-center">
-                                            <a href="{{route('truck.edit', $truck) }}" class="btn btn-info">
-                                                <i class="fas fa-edit nav-icon"></i>
-                                            </a>
-                                            &nbsp;&nbsp;
-                                            <form action="{{ route('truck.destroy', $truck)}}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"class="btn btn-danger"
-                                                onclick="return confirm('¿Está seguro de eliminar los datos del empleado?')"><i
-                                                        class="fas fa-minus-circle nav-icon"></i></button>
-                                            </form>
-                                        </div>
+                                                <a href="{{ route('truck.edit', $truck) }}" class="btn btn-info">
+                                                    <i class="fas fa-edit nav-icon"></i>
+                                                </a>
+                                                &nbsp;&nbsp;
+                                                <form action="{{ route('truck.destroy', $truck) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"class="btn btn-danger"
+                                                        onclick="return confirm('¿Está seguro de eliminar los datos del empleado?')"><i
+                                                            class="fas fa-minus-circle nav-icon"></i></button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach

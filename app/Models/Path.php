@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Path extends Model
 {
@@ -11,4 +12,8 @@ class Path extends Model
     protected $fillable = [
         'sector',
         'neighborhoods'];
+
+        public function schedules() : HasMany {
+            return $this->hasMany(Schedule::class);
+        }
 }

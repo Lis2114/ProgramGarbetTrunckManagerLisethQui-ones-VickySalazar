@@ -1,5 +1,6 @@
 @extends('admin.Template')
 
+
 @section('title')
     Registrar Horario
 @endsection
@@ -10,38 +11,25 @@
         </div>
         <div class="col-6">
             <br>
-            <form action="{{ route('schedule.update', $schedule) }}" method="POST">
+            <form action="{{ route('schedule.store') }}" method="POST">
                 @csrf
-                @method('PUT')
                 <div class="mb-3 row">
                     <label for="born_date" class="col-sm-2 col-form-label">Fecha de recolección:</label>
                     <div class="col-sm-10">
-                        <input type="date" class="form-control" name="date" id="date"
-                        value="{{ old('date', $schedule->date) }}">
-                    @error('date')
-                        <div class="text-small text-danger">{{ $message }}></div>
-                    @enderror
+                        <input type="date" class="form-control" name="date" id="date">
                     </div>
                 </div>
 
                 <div class="mb-3 row">
                     <label for="hourExit" class="col-sm-2 col-form-label">Hora de inicio:</label>
                     <div class="col-sm-10">
-                        <input type="time" class="form-control" name="hourExit" id="hourExit"
-                        value="{{ old('hourExit', $schedule->hourExit) }}">
-                    @error('hourExit')
-                        <div class="text-small text-danger">{{ $message }}></div>
-                    @enderror
+                        <input type="time" class="form-control" name="hourExit" id="hourExit">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="hourArrival" class="col-sm-2 col-form-label">Hora de Finalización:</label>
                     <div class="col-sm-10">
-                        <input type="time" class="form-control" name="hourArrival" id="hourArrival"
-                        value="{{old('hourArrival', $schedule->hourArrival) }}">
-                    @error('hourArrival')
-                        <div class="text-small text-danger">{{ $message }}></div>
-                    @enderror
+                        <input type="time" class="form-control" name="hourArrival" id="hourArrival">
                     </div>
                 </div>
 
@@ -54,9 +42,9 @@
                                 @foreach ($paths as $path)
                                     <option value="{{ $path->id }}"
                                         @isset($path)
-                        @selected(old('route_id', $schedule) == $path->id)
+                        @selected(old('id', $path) == $path->id)
                     @else
-                        @selected(old('route_id', $schedule) == $path->id)
+                        @selected(old('id', $path) == $path->id)
                     @endisset>
                                         {{ $path->sector }} {{ $path->neighborhoods }}
                                     </option>
@@ -74,9 +62,9 @@
                                 @foreach ($trucks as $truck)
                                     <option value="{{ $truck->id }}"
                                         @isset($truck)
-                        @selected(old('truck_id', $schedule) == $truck->id)
+                        @selected(old('id', $truck) == $truck->id)
                     @else
-                        @selected(old('truck_id', $schedule) == $truck->id)
+                        @selected(old('id', $truck) == $truck->id)
                     @endisset>
                                         {{ $truck->numberRegistration }}
                                     </option>
@@ -94,9 +82,9 @@
                                 @foreach ($employees as $employee)
                                     <option value="{{ $employee->id }}"
                                         @isset($employee)
-                        @selected(old('employee_id', $schedule) == $employee->id)
+                        @selected(old('id', $employee) == $employee->id)
                     @else
-                        @selected(old('employee_id', $schedule) == $employee->id)
+                        @selected(old('id', $employee) == $employee->id)
                     @endisset>
                                         {{ $employee->name}} {{ $employee->lastName }}
                                     </option>
@@ -105,10 +93,10 @@
                         </select>
                     </div>
                 </div>
-                <div class="d-flex justify-content-center" >
+                <div class="d-flex justify-content-center">
                     <button type="submit" class="btn btn-primary mb-3" aria-hidden="true"></i>Guardar</button>
                     &nbsp; &nbsp;
-                    <a href="{{ route('schedule.index') }} " class="btn btn-secondary mb-3">Cancelar</a>
+                    <a href="{{ route('schedule.index') }}" class="btn btn-secondary mb-3">Cancelar</a>
                 </div>
             </form>
 

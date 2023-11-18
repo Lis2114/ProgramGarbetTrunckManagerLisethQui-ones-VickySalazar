@@ -1,19 +1,19 @@
-@extends('address.BaseRoute')
+@extends('admin.Template')
 
 @section('styles')
     <!-- DataTables -->
-    <link rel="stylesheet" href="{{ asset('address/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('address/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('address/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 @endsection
 
 @section('title')
-    Listado Rutas
+    Listado De Rutas
 @endsection
 
 @section('content')
     <div class="row">
-        <div class="col-12">
+        <div class="offset-2 col-8">
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-end">
@@ -31,8 +31,6 @@
                             <tr>
                                 <th>Sector</th>
                                 <th>Barrios</th>
-                                <th>Editar</th>
-                                <th>Eliminar</th>
 
                             </tr>
                         </thead>
@@ -43,16 +41,19 @@
                                         <td>{{ $route->sector }}</td>
                                         <td>{{ $route->neighborhoods }}</td>
                                         <td class="text-center">
-                                            <a href="" class="btn btn-info">
-                                                <i class="fas fa-edit nav-icon"></i>
-                                            </a>
-                                        </td>
-                                        <td class="text-center">
-                                            <form action="">
-                                                <a href="" class="btn btn-danger">
-                                                    <i class="fas fa-minus-circle nav-icon"></i>
+                                            <div class="d-flex justify-content-center">
+                                                <a href="{{ route('route.edit', $route) }}" class="btn btn-info">
+                                                    <i class="fas fa-edit nav-icon"></i>
                                                 </a>
-                                            </form>
+                                                &nbsp;&nbsp;
+                                                <form action="{{ route('route.destroy', $route) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger"
+                                                        onclick="return confirm('Información ruta\nSector: {{ $route->sector }}\nBarrios: {{ $route->neighborhoods }}\n\n¿Está seguro de eliminar los datos de la ruta?')"><i
+                                                            class="fas fa-minus-circle nav-icon"></i></button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -66,19 +67,19 @@
 @endsection
 
 @section('scripts')
-    <!-- DataTabltruck Plugins -->
-    <script src="{{ asset('truck/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('truck/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('truck/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('truck/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('truck/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('truck/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('truck/plugins/jszip/jszip.min.js') }}"></script>
-    <script src="{{ asset('truck/plugins/pdfmake/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('truck/plugins/pdfmake/vfs_fonts.js') }}"></script>
-    <script src="{{ asset('truck/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('truck/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('truck/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+    <!-- DataTablemployee Plugins -->
+    <script src="{{ asset('admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/jszip/jszip.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('admin/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 
 
     <script type="text/javascript">
@@ -116,3 +117,4 @@
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });
     </script>
+@endsection()

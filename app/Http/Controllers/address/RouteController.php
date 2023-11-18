@@ -14,7 +14,7 @@ class RouteController extends Controller
     public function index()
     {
         $routes = Path::get();
-        return view('address.indexRoute', ['routes'=>$routes]);
+        return view('address.indexRoute', ['routes' => $routes]);
     }
 
     /**
@@ -22,7 +22,8 @@ class RouteController extends Controller
      */
     public function create()
     {
-        return view('address.RouteCraete');
+        $types = Path::get();
+        return view('address.CreateRoute');
     }
 
     /**
@@ -33,12 +34,12 @@ class RouteController extends Controller
 
         $request->validate([
             'sector' => 'required|regex:/^([A-Za-zÑñ\s]*)$/|between:3,50',
-            'capacity' => 'required|integer|between:100,500',
+            'neighborhoods' => 'required|regex:/^([A-Za-zÑñ\s]*)$/|between:3,50',
         ]);
 
         Path::create([
-            'sector'=> $request->sector,
-            'neighborhoods'=> $request->neighborhoods
+            'sector' => $request->sector,
+            'neighborhoods' => $request->neighborhoods
         ]);
         return redirect()->route('route.index');
     }
@@ -46,7 +47,7 @@ class RouteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $routes)
+    public function show(Path $route)
     {
         //
     }
@@ -54,24 +55,25 @@ class RouteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $routes)
+    public function edit(Path $route)
     {
-        return view('address.UpdateAddress', ['address' => $routes]);
+        return view('address.UpdateRoute', ['route' => $route]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Path $path)
+    public function update(Request $request, Path $route)
     {
-        $request->validate([
-            'sector' =>'required|regex:/^([A-Za-zÑñ\s]*)$/|between:3,50',
-            'capacity' => 'required|integer|between:100,500',
-        ]);
 
-        $path->update([
-            'sector'=> $request->sector,
-            'neighborhoods'=> $request->neighborhoods
+
+        $request->validate([
+            'sector' => 'required|regex:/^([A-Za-zÑñ\s]*)$/|between:3,50',
+            'neighborhoods' => 'required|regex:/^([A-Za-zÑñ\s]*)$/|between:3,50',
+        ]);
+        $route->update([
+            'sector' => $request->sector,
+            'neighborhoods' => $request->neighborhoods
         ]);
         return redirect()->route('route.index');
     }
@@ -79,9 +81,9 @@ class RouteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Path $path)
+    public function destroy(Path $route)
     {
-        $path->delete();
+        $route->delete();
         return redirect()->route('route.index');
     }
 }

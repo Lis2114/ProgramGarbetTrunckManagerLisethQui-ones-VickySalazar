@@ -17,8 +17,8 @@ class PathFactory extends Factory
     public function definition(): array
     {
         return [
-            'sector'=> $this->faker->text(15),
-            'neighborhoods'=> $this->faker->text(100),
+            'sector' => $this->faker->text(15),
+            'neighborhoods' => $this->faker->text(100),
         ];
     }
 }

@@ -25,7 +25,6 @@
         <link href="{{ asset('home/css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 
-
     </head>
 
     <body>
@@ -68,8 +67,9 @@
             <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-lg-5">
                 <a href="index.html" class="navbar-brand ml-lg-3">
                     <h1 class="m-0 display-5 text-uppercase text-primary">
-                        <img src="{{asset('img/gs-logo.png')}}" alt="Garbage Schedule" class="img-logo">Garbage
-                        Schedule</h1>
+                        <img src="{{ asset('img/gs-logo.png') }}" alt="Garbage Schedule" class="img-logo">Garbage
+                        Schedule
+                    </h1>
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
@@ -78,7 +78,7 @@
                     <div class="navbar-nav m-auto py-0">
 
                     </div>
-                    <a href="{{route('login') }}" class="btn btn-primary py-2 px-4 d-none d-lg-block">Ingresar</a>
+                    <a href="{{ route('login') }}" class="btn btn-primary py-2 px-4 d-none d-lg-block">Ingresar</a>
                 </div>
             </nav>
         </div>
@@ -104,7 +104,10 @@
         <!-- Header End -->
 
         <!-- Table -->
+
         <div class="card-body">
+
+
             <table id="example2" class="table table-bordered table-hover">
                 <thead>
                     <tr>
@@ -115,7 +118,19 @@
                         <th>Hora fin recorrido</th>
                     </tr>
                 </thead>
-
+                <tbody>
+                    @isset($schedules)
+                        @foreach ($schedules as $schedule)
+                            <tr>
+                                <td>{{ $schedule->route->sector }}</td>
+                                <td>{{ $schedule->route->neighborhoods }}</td>
+                                <td>{{ $schedule->date }}</td>
+                                <td>{{ $schedule->hourExit }}</td>
+                                <td>{{ $schedule->hourArrival }}</td>
+                            </tr>
+                        @endforeach
+                    @endisset
+                </tbody>
             </table>
         </div>
 

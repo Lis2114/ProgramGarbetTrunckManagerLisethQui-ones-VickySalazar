@@ -1,4 +1,4 @@
-@extends('employee.BaseEmployee')
+@extends('admin.Template')
 
 @section('title')
     Editar Empleado
@@ -65,7 +65,7 @@
                 <div class="d-flex justify-content-center">
                     <button type="submit" class="btn btn-primary" aria-hidden="true"></i>Editar</button>
                     &nbsp; &nbsp;
-                    <a href="{{ route('employee.index') }}" class="btn btn-secondary">Cancelar</a>
+                    <a href="{{ route('employee.index') }}" class="btn btn-secondary mb3">Cancelar</a>
                 </div>
             </form>
 

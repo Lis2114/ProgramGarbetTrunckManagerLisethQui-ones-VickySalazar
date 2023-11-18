@@ -18,7 +18,7 @@ class employeeController extends Controller
     public function create()
     {
         $types = Employee::get();
-        return view('employee.EmployeeCreate', ['types' => $types, 'employee' => null]);
+        return view('employee.CreateEmployee', ['types' => $types, 'employee' => null]);
     }
 
     public function store(Request $request)
@@ -46,7 +46,7 @@ class employeeController extends Controller
 
     public function edit(Employee $employee)
     {
-        return view('employee.EmployeeUpdate', ['employee' => $employee]);
+        return view('employee.UpdateEmployee', ['employee' => $employee]);
     }
 
     public function update(Request $request, Employee $employee)

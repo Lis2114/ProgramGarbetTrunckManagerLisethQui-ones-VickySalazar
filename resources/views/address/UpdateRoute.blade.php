@@ -1,4 +1,4 @@
-@extends('address.BaseRoute')
+@extends('admin.Template')
 
 @section('title')
     Editar Rutas
@@ -11,13 +11,13 @@
         <div class="col-6">
 
             <br><br>
-            <form action="{{ route('addres.update', $addres) }}" method="POST">
+            <form action="{{ route('route.update', $route) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="mb-3 row">
                     <label class="form-label" for="sector">sector:</label>
                     <input class="form-control" type="text" name="sector" id="sector" placeholder="sectores..."
-                        value="{{ old('sector', $addres->sector) }}">
+                        value="{{ old('sector',$route->sector) }}">
                     @error('sector')
                         <div class="text-small text-danger">{{ $message }}</div>
                     @enderror
@@ -25,7 +25,7 @@
                 <div class="mb-3 row">
                     <label class="form-label" for="neighborhoods">Barrios:</label>
                     <input class="form-control" type="text" name="neighborhoods" id="neighborhoods" placeholder="Barrios.."
-                        value="{{ old('neighborhoods', $addres->neighborhoods) }}">
+                        value="{{old('neighborhoods', $route->neighborhoods) }}">
                     @error('neighborhoods')
                         <div class="text-small text-danger">{{ $message }}</div>
                     @enderror
@@ -35,7 +35,7 @@
                 <div class="d-flex justify-content-center">
                     <button type="submit" class="btn btn-primary" aria-hidden="true"></i>Editar</button>
                     &nbsp; &nbsp;
-                    <a href="{{ route('adrres.index') }}" class="btn btn-secondary">Cancelar</a>
+                    <a href="{{ route('route.index') }}" class="btn btn-secondary">Cancelar</a>
                 </div>
             </form>
 

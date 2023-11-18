@@ -1,4 +1,4 @@
-@extends('truck.BaseTruck')
+@extends('admin.Template')
 
 @section('title')
     Editar Camion
@@ -36,7 +36,7 @@
             <div class="d-flex justify-content-center">
                 <button type="submit" class="btn btn-primary mb-3" aria-hidden="true"></i>Registrar</button>
                 &nbsp; &nbsp;
-                <a href="{{ route('truck.index') }}" class="btn btn-secondary">Cancelar</a>
+                <a href="{{ route('truck.index') }}" class="btn btn-secondary mb-3">Cancelar</a>
             </div>
         </form>
 

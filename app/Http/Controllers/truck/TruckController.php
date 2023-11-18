@@ -23,7 +23,7 @@ class TruckController extends Controller
     public function create()
     {
         $types = Truck::get();
-        return view('truck.TruckCreate',);
+        return view('truck.CreateTruck',);
     }
 
     /**
