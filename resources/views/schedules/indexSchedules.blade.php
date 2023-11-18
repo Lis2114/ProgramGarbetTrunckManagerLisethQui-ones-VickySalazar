@@ -28,12 +28,13 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Fecha de recolección</th>
-                                <th>Hora de inicio</th>
-                                <th>Hora de finalización</th>
+                                <th>F.recolección</th>
+                                <th>H. inicio</th>
+                                <th>H.finalización</th>
                                 <th>Ruta</th>
                                 <th>Camión</th>
                                 <th>Empleados</th>
+                                <th> </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -52,7 +53,7 @@
                                                     <i class="fas fa-edit nav-icon"></i>
                                                 </a>
                                                 &nbsp;&nbsp;
-                                                <form action="{{ route('schedule.destroy', $schedule) }}" method="POST">
+                                                <form action="{{route('schedule.destroy', $schedule) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger"

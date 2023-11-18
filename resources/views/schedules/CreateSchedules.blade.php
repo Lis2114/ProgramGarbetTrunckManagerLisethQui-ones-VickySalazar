@@ -17,6 +17,9 @@
                     <label for="born_date" class="col-sm-2 col-form-label">Fecha de recolección:</label>
                     <div class="col-sm-10">
                         <input type="date" class="form-control" name="date" id="date">
+                        @error('date')
+                        <div class="text-small text-danger">{{ $message }}</div>
+                    @enderror
                     </div>
                 </div>
 
@@ -24,12 +27,18 @@
                     <label for="hourExit" class="col-sm-2 col-form-label">Hora de inicio:</label>
                     <div class="col-sm-10">
                         <input type="time" class="form-control" name="hourExit" id="hourExit">
+                        @error('hourExit')
+                        <div class="text-small text-danger">{{ $message }}</div>
+                    @enderror
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="hourArrival" class="col-sm-2 col-form-label">Hora de Finalización:</label>
                     <div class="col-sm-10">
                         <input type="time" class="form-control" name="hourArrival" id="hourArrival">
+                        @error('hourArrival')
+                        <div class="text-small text-danger">{{ $message }}</div>
+                    @enderror
                     </div>
                 </div>
 

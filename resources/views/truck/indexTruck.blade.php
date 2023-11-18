@@ -29,6 +29,7 @@
                             <tr>
                                 <th>Placa</th>
                                 <th>Capacidad de recoleccion(kg)</th>
+                                <th> </th>
 
                             </tr>
                         </thead>

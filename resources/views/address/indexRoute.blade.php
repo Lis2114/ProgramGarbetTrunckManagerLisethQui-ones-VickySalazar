@@ -8,7 +8,7 @@
 @endsection
 
 @section('title')
-    Listado De Rutas
+    Listado Rutas
 @endsection
 
 @section('content')
@@ -31,6 +31,7 @@
                             <tr>
                                 <th>Sector</th>
                                 <th>Barrios</th>
+                                <th></th>
 
                             </tr>
                         </thead>
@@ -65,6 +66,7 @@
         </div>
     </div>
 @endsection
+
 
 @section('scripts')
     <!-- DataTablemployee Plugins -->

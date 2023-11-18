@@ -36,7 +36,6 @@ class employeeController extends Controller
             'lastName' => $request->lastName,
             'identification' => $request->identification,
             'type' => $request->type,
-
         ]);
         return redirect()->route('employee.index');
     }

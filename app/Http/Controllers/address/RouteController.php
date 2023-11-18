@@ -23,7 +23,7 @@ class RouteController extends Controller
     public function create()
     {
         $types = Path::get();
-        return view('address.CreateRoute');
+        return view('address.CreateRoute',['types' => $types, 'route' => null]);
     }
 
     /**
@@ -34,7 +34,7 @@ class RouteController extends Controller
 
         $request->validate([
             'sector' => 'required|regex:/^([A-Za-zÑñ\s]*)$/|between:3,50',
-            'neighborhoods' => 'required|regex:/^([A-Za-zÑñ\s]*)$/|between:3,50',
+            'neighborhoods' => 'required|regex:/^([A-Za-zÑñ\s0-9]*)$/|between:3,50',
         ]);
 
         Path::create([

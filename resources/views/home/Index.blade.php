@@ -25,6 +25,14 @@
         <link href="{{ asset('home/css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 
+        @section('styles')
+            <!-- DataTables -->
+            <link rel="stylesheet" href="{{ asset('admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+            <link rel="stylesheet"
+                href="{{ asset('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+        @endsection
+
     </head>
 
     <body>
@@ -91,13 +99,12 @@
                 <h1 class="text-primary mb-4">Ruta recoleccion de basura </h1>
                 <h1 class="text-white display-3 mb-5">Garbage Schedule</h1>
                 <div class="mx-auto" style="width: 100%; max-width: 600px;">
-                    <div class="input-group">
-                        <input type="text" class="form-control border-light" style="padding: 30px;"
-                            placeholder="Escoja fecha">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary px-3">Buscar</button>
-                        </div>
-                    </div>
+                    <form id="searchForm">
+                        <label for="fecha">Selecciona una fecha:</label>
+                        <input type="date" id="fecha" name="fecha">
+                        <button type="button" onclick="buscarPorFecha()">Buscar</button>
+                    </form>
+
                 </div>
             </div>
         </div>
@@ -106,9 +113,9 @@
         <!-- Table -->
 
         <div class="card-body">
+            
 
-
-            <table id="example2" class="table table-bordered table-hover">
+            <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>Ruta</th>
@@ -159,6 +166,7 @@
         <a href="#" class="btn btn-lg btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
 
+
         <!-- JavaScript Libraries -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
@@ -169,6 +177,59 @@
 
         <!-- Template Javascript -->
         <script src="{{ asset('js/main.js') }}"></script>
+
+        @section('scripts')
+            <!-- DataTablemployee Plugins -->
+            <script src="{{ asset('admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+            <script src="{{ asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+            <script src="{{ asset('admin/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+            <script src="{{ asset('admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+            <script src="{{ asset('admin/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+            <script src="{{ asset('admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+            <script src="{{ asset('admin/plugins/jszip/jszip.min.js') }}"></script>
+            <script src="{{ asset('admin/plugins/pdfmake/pdfmake.min.js') }}"></script>
+            <script src="{{ asset('admin/plugins/pdfmake/vfs_fonts.js') }}"></script>
+            <script src="{{ asset('admin/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+            <script src="{{ asset('admin/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+            <script src="{{ asset('admin/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+
+
+            <script type="text/javascript">
+                $(function() {
+                    $("#example1").DataTable({
+                        "responsive": true,
+                        "lengthChange": false,
+                        "autoWidth": false,
+                        "language": {
+                            "lengthMenu": "Mostrar " +
+                                `<select class="custom-select custom-select-sm form-control form-control-sm">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>` +
+                                " registros por página",
+                            "zeroRecords": "No hay registros",
+                            "info": "Mostrando la página PAGE de PAGES",
+                            "infoEmpty": "No hay registros disponibles",
+                            "infoFiltered": "(filtrado de MAX registros totales)",
+                            "search": "Buscar:",
+                            "paginate": {
+                                "next": "Siguiente",
+                                "previous": "Anterior"
+                            },
+                            "processing": "Procesando...",
+                            "buttons": {
+                                "copy": "Copiar",
+                                "print": "Imprimir",
+                                "colvis": "Ocultar columnas"
+                            }
+                        },
+                        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+                });
+            </script>
+        @endsection()
 
     </body>
 

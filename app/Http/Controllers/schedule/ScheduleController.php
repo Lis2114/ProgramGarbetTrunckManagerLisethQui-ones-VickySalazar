@@ -36,6 +36,11 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'hourExit' => 'required|time',
+            'hourArrival' => 'required|time',
+            'date' => 'required|date',
+        ]);
         // dd($request);
         Schedule::create([
             'hourExit' => $request->hourExit,
@@ -78,6 +83,12 @@ class ScheduleController extends Controller
      */
     public function update(Request $request, Schedule $schedule)
     {
+        $request->validate([
+            'hourExit' => 'required|time',
+            'hourArrival' => 'required|time',
+            'date' => 'required|date',
+        ]);
+        
         $schedule->update([
             'hourExit' => $request->hourExit,
             'hourArrival' => $request->hourArrival,
