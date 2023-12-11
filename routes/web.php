@@ -20,25 +20,3 @@ use App\Http\Controllers\auth\AuthenticationSessionController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', [HomeController::class, 'index'])->name('home');
-
-Route::get('/welcome',[AdminController::class,'welcome'])->name('welcome');
-
-//=========Rutas de sesión================
-
-route::get('/login', [AuthenticationSessionController::class,'create'])->name('login');
-route::post('/login', [AuthenticationSessionController::class,'store'])->name('start');
-route::post('/logout', [AuthenticationSessionController::class,'destroy'])->name('logout');
-
-route::get('/register', [RegisterUserController::class,'create'])->name('register');
-route::post('/register', [RegisterUserController::class,'store'])->name('save');
-
-//=====================Employee==================
-Route::resource('employee',EmployeeController::class);
-//=====================Camion==========================
-Route::resource('truck',TruckController::class);
-//=====================Rutas==========================
-Route::resource('route',RouteController::class);
-//=====================Rutas==========================
-Route::resource('schedule',ScheduleController::class);
