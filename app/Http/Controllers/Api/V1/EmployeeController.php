@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Api\V1;
-
-use App\Http\Controllers\Controller;
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\V1\EmployeeResource;
 
 class EmployeeController extends Controller
 {
@@ -13,7 +14,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        $employees = Employee::get();
+        return EmployeeResource::collection($employees);
     }
 
     /**
@@ -21,7 +23,14 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $employee = new Employee($request->all());
+
+        $employee->save();
+
+        return response()->json([
+            'message'=> 'El empleado ha sido Guardado',
+            'data'=> $employee
+        ], Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -29,7 +38,7 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
-        //
+        return new EmployeeResource($employee);
     }
 
     /**
@@ -37,7 +46,11 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
-        //
+        $employee->update($request->all());
+        return response()->json([
+            'message'=> 'Los datos de el empleado se han actualizado',
+            'data'=> $employee
+        ], Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -45,6 +58,9 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        //
+        $employee->delete();
+        return response()->json([
+            'message'=> 'Los datos de el empleado han sido eliminados'
+        ], Response::HTTP_ACCEPTED);
     }
 }

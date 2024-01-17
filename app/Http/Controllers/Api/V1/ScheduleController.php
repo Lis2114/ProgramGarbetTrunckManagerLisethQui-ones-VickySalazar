@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\ScheduleResource;
-use App\Http\Resources\V1\ScheduleHomeResource;
+//use App\Http\Resources\V1\ScheduleHomeResource;
 
 class ScheduleController extends Controller
 {
@@ -17,31 +17,15 @@ class ScheduleController extends Controller
     public function index()
     {
         $schedules = Schedule::get();
-        return ScheduleResource::collection($schedules);;
+        return ScheduleResource::collection($schedules);
     }
-
-    /**
-     * Display a listing of the resource.
-     */
-    // public function showSchedules()
-    // {
-    //     $schedules = ScheduleHomeResource::collection(Schedule::get());
-    //     return $schedules;
-    // }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        $schedule = new Schedule();
-
-        $schedule->hourExit = $request->input('hourExit');
-        $schedule->hourArrival = $request->input('hourArrival');
-        $schedule->date = $request->input('date');
-        $schedule-> route_id = $request->input('route_id');
-        $schedule-> truck_id = $request->input('truck_id');
-        $schedule-> employee_id = $request->input('employee_id');
+        $schedule = new Schedule($request->all());
 
         $schedule->save();
 
@@ -58,7 +42,6 @@ class ScheduleController extends Controller
     {
         return new ScheduleResource($schedule);
     }
-
     /**
      * Update the specified resource in storage.
      */
@@ -78,7 +61,7 @@ class ScheduleController extends Controller
     {
         $schedule->delete();
         return response()->json([
-            'message'=> 'Los datos de la mascota han sido eliminados'
+            'message'=> 'Los datos de el horario han sido eliminados'
         ], Response::HTTP_ACCEPTED);
     }
 }

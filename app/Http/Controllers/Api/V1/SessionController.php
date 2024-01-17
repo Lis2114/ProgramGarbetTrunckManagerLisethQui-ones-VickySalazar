@@ -1,52 +1,52 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1\auth;
+namespace App\Http\Controllers\Api\V1;
+
+use App\Http\Controllers\Controller;
+use App\Http\Resources\V1\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-
-class AuthenticationSessionController extends Controller
+class SessionController extends Controller
 {
     public function login(Request $request){
         if(Auth::attempt($request->only('email','password'))){
             $user = $request->user();
 
             return response()->json([
-                'token' =>$user->createToken($request->name)->plainTextToken,
-                'name' => $user->name,
-                'email'=> $user->email,
+                //Generar token (clave) para el servicio autenticado
+                //si hay clave puede consumir los servicios
+                'token' => $user->createToken($request->name)->plainTextToken,
+                'name'=>$user->name,
+                'email' => $user->email,
                 'message' => 'Success'
-            ],Response::HTTP_ACCEPTED);
-        }
-        else{
+            ], Response::HTTP_ACCEPTED);
+        }else{
             return response()->json([
+
                 'message' => 'Unauthorized'
             ], Response::HTTP_UNAUTHORIZED);
-
         }
     }
+
     public function logout(Request $request){
-        $user= $request->User();
+        $user = $request->user();
         if($user){
             $user->currentAccessToken()->delete();
             return response()->json([
-                'message'=> 'Successfully logged out'
-            ],Response::HTTP_ACCEPTED);
-
-        }
-        else{
+                'message' => 'Successfully logged out'
+            ], Response::HTTP_ACCEPTED);
+        }else{
             return response()->json([
-                'message'=> 'Successfully logged out'
-            ],Response::HTTP_UNAUTHORIZED);
+
+                'message' => 'User not authorized'
+            ], Response::HTTP_UNAUTHORIZED);
         }
     }
-
-
-    public function register(Request $request){
-
+    public function register(Request $request)
+    {
         $user = new User();
 
         $user->name = $request->input('name');
@@ -56,9 +56,9 @@ class AuthenticationSessionController extends Controller
         $user->save();
 
         return response()->json([
-            'message' => 'User registered',
-            'data'=>$user
+            'message'=> 'se ha registrado un usuario con éxito',
+            'data'=> $user
         ], Response::HTTP_ACCEPTED);
-
     }
+
 }

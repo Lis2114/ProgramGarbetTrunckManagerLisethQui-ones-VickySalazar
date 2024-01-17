@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\V1\RouteResource;
 use App\Models\Path;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -14,8 +15,8 @@ class RouteController extends Controller
      */
     public function index()
     {
-        $routes = Path::get();
-        return $routes;
+        $paths = Path::get();
+        return RouteResource::collection($paths);
     }
 
     /**
@@ -23,11 +24,7 @@ class RouteController extends Controller
      */
     public function store(Request $request)
     {
-        $path = new Path();
-        //dd($request);
-        $path-> sector = $request->input ('sector');
-        $path->neighborhoods= $request->input('neighborhoods');
-
+        $path = new Path($request->all());
 
         $path->save();
 
@@ -42,7 +39,7 @@ class RouteController extends Controller
      */
     public function show(Path $path)
     {
-        //return new
+        return new RouteResource($path);
     }
 
     /**
@@ -52,7 +49,7 @@ class RouteController extends Controller
     {
         $path->update($request->all());
         return response()->json([
-            'message'=> 'Los datos de la rutas  se han actualizado',
+            'message'=> 'Los datos de la ruta se han actualizado',
             'data'=> $path
         ], Response::HTTP_ACCEPTED);
     }
@@ -64,7 +61,7 @@ class RouteController extends Controller
     {
         $path->delete();
         return response()->json([
-            'message'=> 'Los datos de la rutas han sido eliminados'
+            'message'=> 'Los datos de el horario han sido eliminados'
         ], Response::HTTP_ACCEPTED);
     }
 }

@@ -10,8 +10,8 @@ class Path extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'sector',
-        'neighborhoods'];
+        "sector",
+        "sector"];
 
         public function schedules() : HasMany {
             return $this->hasMany(Schedule::class);
